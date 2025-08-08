@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Book Aura</title>
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Root Variables for Better Maintainability */
+    :root {
+      --primary-gradient: linear-gradient(to right, #c1e0f7, #ffe3e0);
+      --text-color: #111;
+      --text-secondary: #333;
+      --text-light: #666;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --shadow-hover: rgba(0, 0, 0, 0.15);
+      --border-radius: 20px;
+      --border-radius-small: 15px;
+      --transition: all 0.3s ease;
+    }
+
+    /* Base Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--primary-gradient);
+      line-height: 1.6;
+    }
+
+    /* Container Class for Consistent Width */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* Flexbox Utilities */
+    .flex {
+      display: flex;
+    }
+
+    .flex-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    /* Text Utilities */
+    .text-center {
+      text-align: center;
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+
+    /* Button Base Class */
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: var(--white);
+      color: black;
+    }
+
+    .btn-primary:hover {
+      background-color: #f0f0f0;
+    }
+
+    .btn-secondary {
+      background-color: #e0e0e0;
+      color: black;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d1d1d1;
+    }
+
+    .btn-blue {
+      background-color: #007bff;
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: var(--border-radius-small);
+      font-size: 12px;
+    }
+
+    .btn-blue:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-dark {
+      background-color: #333;
+      color: var(--white);
+      padding: 15px 40px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .btn-dark:hover {
+      background-color: #555;
+    }
+
+    /* Card Components */
+    .card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px var(--shadow-hover);
+    }
+
+    /* Image Responsive Class */
+    .img-responsive {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* === HEADER SECTION === */
+    .header {
+      flex-wrap: wrap;
+    }
+
+    .header .text {
+      flex: 1;
+    }
+
+    .header h1 {
+      font-size: 40px;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .header h1 span {
+      font-weight: bold;
+    }
+
+    .header .buttons {
+      margin-top: 30px;
+    }
+
+    .header .buttons .btn {
+      margin-right: 15px;
+    }
+
+    .header .image {
+      flex: 1;
+    }
+
+    .header .image img {
+      width: 80%;
+      max-width: 350px;
+      margin-left: 360px;
+    }
+
+    /* === ABOUT SECTION === */
+    .about-section .left {
+      flex: 1;
+      padding-right: 40px;
+    }
+
+    .about-section h2 {
+      font-size: 28px;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .about-section .right {
+      flex: 1;
+    }
+
+    .about-section .right img {
+      width: 80%;
+      border-radius: 30px;
+      max-width: 350px;
+    }
+
+    /* === MOOD SELECTION SECTION === */
+    .mood-section h2 {
+      font-size: 32px;
+      color: var(--text-color);
+      margin-bottom: 50px;
+    }
+
+    .mood-cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .mood-card {
+      padding: 30px 20px;
+      width: 200px;
+      cursor: pointer;
+    }
+
+    .mood-card img {
+      object-fit: cover;
+      border-radius: var(--border-radius-small);
+      margin-bottom: 20px;
+    }
+
+    .mood-card h3 {
+      font-size: 18px;
+      color: var(--text-color);
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .mood-card p {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+
+    .read-now-btn {
+      margin-top: 40px;
+    }
+
+    /* === BOOK SECTIONS === */
+    .book-section {
+      display: none;
+    }
+
+    .book-section.active {
+      display: block;
+    }
+
+    /* Show header and about by default */
+    .header,
+    .about-section {
+      display: flex;
+    }
+
+    .book-section h2 {
+      font-size: 28px;
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+
+    .book-section .subtitle {
+      font-size: 18px;
+      color: var(--text-color);
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .books-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .book-card {
+      padding: 20px;
+      width: 250px;
+      border-radius: var(--border-radius-small);
+    }
+
+    .book-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .book-card img {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #f0f0f0;
+    }
+
+    .book-card h4 {
+      font-size: 16px;
+      color: var(--text-color);
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+
+    .book-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 15px;
+      padding: 0 10px;
+    }
+
+    .back-btn {
+      padding: 12px 30px;
+      margin-top: 20px;
+    }
+
+    /* === CONTACT SECTION === */
+    .contact-section {
+      display: none;
+    }
+
+    .contact-section.active {
+      display: flex;
+    }
+
+    .contact-section .left {
+      flex: 1;
+      padding-right: 40px;
+    }
+
+    .contact-section h2 {
+      font-size: 28px;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .contact-section p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .contact-info h3 {
+      font-size: 18px;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .office-info {
+      margin-bottom: 20px;
+    }
+
+    .office-info h4 {
+      font-size: 14px;
+      color: var(--text-color);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .office-info p {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 2px;
+    }
+
+    .social-media {
+      margin-top: 30px;
+    }
+
+    .social-media h4 {
+      font-size: 14px;
+      color: var(--text-color);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .social-media a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-right: 15px;
+      font-size: 14px;
+    }
+
+    .contact-section .right {
+      flex: 1;
+    }
+
+    .contact-section .right img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: var(--border-radius);
+      margin-bottom:384px;
+      margin-left: 244px;
+    }
+
+    /* === RESPONSIVE DESIGN === */
+    @media screen and (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      .header, 
+      .about-section, 
+      .contact-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header .image img,
+      .about-section .right img,
+      .contact-section .right img {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .about-section .left,
+      .contact-section .left {
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      .mood-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .books-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .book-card {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .header h1 {
+        font-size: 32px;
+      }
+
+      .about-section h2,
+      .contact-section h2 {
+        font-size: 24px;
+      }
+
+      .mood-section h2 {
+        font-size: 28px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .mood-card {
+        width: 180px;
+        padding: 20px 15px;
+      }
+
+      .book-card {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .book-card img {
+        width: 180px;
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === HEADER SECTION === -->
+  <header class="header flex-between container" id="home">
+    <div class="text">
+      <h1>The <span>Book</span><br><span>Aura</span></h1>
+      <div class="buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('mood-selection').style.display='block'; document.getElementById('mood-selection').scrollIntoView({behavior: 'smooth'});">Read Now</button>
+        <button class="btn btn-secondary" onclick="showContact()">Contact Us</button>
+      </div>
+    </div>
+    <div class="image flex-center">
+      <img src="white-headphones-white-background_81048-19922.avif" alt="Headphones" class="img-responsive" />
+    </div>
+  </header>
+
+  <!-- === ABOUT US SECTION === -->
+  <section class="about-section flex-between container" id="about">
+    <div class="left">
+      <h2>About Us</h2>
+      <p>
+        Welcome to The Book Aura - your personal reading companion that matches books to your current mood. 
+        Whether you're feeling happy, sad, or angry, we help you discover the perfect book to enhance or transform 
+        your emotional state. Our curated collection ensures every reading experience resonates with your feelings.
+      </p>
+    </div>
+    <div class="right flex-center">
+      <img src="b325f024a566f668f2bb4903a2bd5d5c.jpg" alt="About Us Image" class="img-responsive" />
+    </div>
+  </section>
+
+  <!-- === MOOD SELECTION SECTION === -->
+  <section class="mood-section text-center container" id="mood-selection">
+    <h2>Fix your mood now!</h2>
+    <div class="mood-cards">
+      <div class="mood-card card" onclick="showBookSection('happy')">
+        <img src="HAPPY.PNG" alt="Happy" class="img-responsive" />
+        <h3 class="uppercase">HAPPY</h3>
+        <p>Uplifting stories to celebrate life's beautiful moments</p>
+      </div>
+      <div class="mood-card card" onclick="showBookSection('sad')">
+        <img src="Sad.PNG" alt="Sad" class="img-responsive" />
+        <h3 class="uppercase">SAD</h3>
+        <p>Healing stories to help you through difficult times</p>
+      </div>
+      <div class="mood-card card" onclick="showBookSection('angry')">
+        <img src="Angry.PNG" alt="Angry" class="img-responsive" />
+        <h3 class="uppercase">ANGRY</h3>
+        <p>Transformative books to channel your emotions</p>
+      </div>
+    </div>
+    <button class="btn btn-dark read-now-btn uppercase">READ NOW</button>
+  </section>
+
+  <!-- === HAPPY BOOKS SECTION === -->
+  <section class="book-section text-center container" id="happy-books">
+    <h2 class="uppercase">YOU'RE FEELING</h2>
+    <div class="subtitle uppercase">HAPPY</div>
+    <div class="books-grid">
+      <article class="book-card card text-center">
+        <img src="H-1.jpg" alt="The House in the Cerulean Sea" />
+        <h4 class="uppercase">THE HOUSE IN THE CERULEAN SEA</h4>
+        <p>Found family fantasy warmth</p>
+        <a href="https://www.bing.com/ck/a?!&&p=d424e075abb06d1b30ef5af3574de83b322514fd76f3c691379d92b3c5bc6d18JmltdHM9MTc1NDYxMTIwMA&ptn=3&ver=2&hsh=4&fclid=2a283fd0-2ef7-6910-0de6-2aa32f2c6849&psq=the+house+in+the+cerulean+sea+full+book&u=a1aHR0cHM6Ly93d3cuZ29vZHJlYWRzLmNvbS9ib29rL3Nob3cvNDUwNDczODQtdGhlLWhvdXNlLWluLXRoZS1jZXJ1bGVhbi1zZWE&ntb=1" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+      <article class="book-card card text-center">
+        <img src="H-2.webp" alt="Anxious People" />
+        <h4 class="uppercase">ANXIOUS PEOPLE</h4>
+        <p>Humorous heartwarming flawed people</p>
+        <a href="https://openlibrary.org/works/OL20656755W/Anxious_People" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+      <article class="book-card card text-center">
+        <img src="H-3.jpeg" alt="The Hitchhiker's Guide to the Galaxy" />
+        <h4 class="uppercase">THE HITCHHIKER'S GUIDE</h4>
+        <p>Hilarious absurd cosmic journey</p>
+        <a href="https://openlibrary.org/works/OL2163721W/The_Hitchhiker's_Guide_to_the_Galaxy" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+    </div>
+    <button class="btn btn-secondary back-btn" onclick="showMoodSection()">Go Back</button>
+  </section>
+
+  <!-- === SAD BOOKS SECTION === -->
+  <section class="book-section text-center container" id="sad-books">
+    <h2 class="uppercase">YOU'RE FEELING</h2>
+    <div class="subtitle uppercase">SAD</div>
+    <div class="books-grid">
+      <article class="book-card card text-center">
+        <img src="S-1.webp" alt="A Little Life" />
+        <h4 class="uppercase">A LITTLE LIFE</h4>
+        <p>Deeply moving heartbreaking friendship tale</p>
+        <a href="https://openlibrary.org/works/OL17207995W/A_Little_Life" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+      <article class="book-card card text-center">
+        <img src="S-2.jpeg" alt="The Book Thief" />
+        <h4 class="uppercase">THE BOOK THIEF</h4>
+        <p>Poignant World War II story</p>
+        <a href="https://openlibrary.org/works/OL5735363W/The_Book_Thief" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+      <article class="book-card card text-center">
+        <img src="S-3.webp" alt="The Kite Runner" />
+        <h4 class="uppercase">THE KITE RUNNER</h4>
+        <p>Friendship betrayal and redemption story</p>
+        <a href="https://openlibrary.org/works/OL45804W/The_Kite_Runner" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+    </div>
+    <button class="btn btn-secondary back-btn" onclick="showMoodSection()">Go Back</button>
+  </section>
+
+  <!-- === ANGRY BOOKS SECTION === -->
+  <section class="book-section text-center container" id="angry-books">
+    <h2 class="uppercase">YOU'RE FEELING</h2>
+    <div class="subtitle uppercase">ANGRY</div>
+    <div class="books-grid">
+      <article class="book-card card text-center">
+        <img src="A-1.webp" alt="Rage Becomes Her" />
+        <h4 class="uppercase">RAGE BECOMES HER</h4>
+        <p>Revolutionary power of women's anger</p>
+        <a href="https://openlibrary.org/works/OL20152445W/Rage_Becomes_Her" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+      <article class="book-card card text-center">
+        <img src="A-2.jpg" alt="Anger: Wisdom for Cooling the Flames" />
+        <h4 class="uppercase">ANGER: WISDOM FOR COOLING</h4>
+        <p>Buddhist guide to managing anger</p>
+        <a href="https://openlibrary.org/works/OL3270742W/Anger" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+      <article class="book-card card text-center">
+        <img src="A-3.webp" alt="The Power" />
+        <h4 class="uppercase">THE POWER</h4>
+        <p>Women develop electric shock abilities</p>
+        <a href="https://openlibrary.org/works/OL17306968W/The_Power" target="_blank" class="btn btn-blue">Read Now</a>
+      </article>
+    </div>
+    <button class="btn btn-secondary back-btn" onclick="showMoodSection()">Go Back</button>
+  </section>
+
+  <!-- === CONTACT US SECTION === -->
+  <section class="contact-section container" id="contact">
+    <div class="left">
+      <h2>Contact Us</h2>
+      <p>
+        We'd love to hear from you! Get in touch with us for any questions about books, 
+        recommendations, or just to share your reading experience.
+      </p>
+      <p>Visit us at our store!</p>
+      
+      <div class="contact-info">
+        <h3 class="uppercase">OUR LOCATIONS</h3>
+        
+        <div class="office-info">
+          <h4 class="uppercase">MAIN OFFICE</h4>
+          <p>123 Book Street,</p>
+          <p>Any City, State</p>
+          <p>Any Country</p>
+          <p>(123) 456-7890</p>
+        </div>
+        
+        <div class="office-info">
+          <h4 class="uppercase">BRANCH OFFICE</h4>
+          <p>456 Reading Ave,</p>
+          <p>Any City, State</p>
+          <p>Any Country</p>
+          <p>(123) 456-7891</p>
+        </div>
+      </div>
+      
+      <p style="margin-top: 20px; font-weight: bold;">hello@thebookaura.com</p>
+      
+      <div class="social-media">
+        <h4 class="uppercase">SOCIAL MEDIA</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="right flex-center">
+      <img src="contact.webp" alt="Contact Image" class="img-responsive" />
+    </div>
+  </section>
+
+  <script>
+    function showMoodSection() {
+      // Hide all sections
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+      });
+      document.getElementById('home').style.display = 'none';
+      // Show mood selection
+      document.getElementById('mood-selection').style.display = 'block';
+    }
+
+    function showBookSection(mood) {
+      // Hide all sections
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('active');
+      });
+      document.getElementById('home').style.display = 'none';
+      
+      // Show the corresponding book section
+      const sectionId = mood + '-books';
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = 'block';
+        section.classList.add('active');
+      }
+    }
+
+    function showContact() {
+      // Hide all sections
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('active');
+      });
+      document.getElementById('home').style.display = 'none';
+      // Show contact section
+      document.getElementById('contact').style.display = 'flex';
+      document.getElementById('contact').classList.add('active');
+    }
+
+    function goHome() {
+      // Hide all sections
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('active');
+      });
+      // Show home sections
+      document.getElementById('home').style.display = 'flex';
+      document.getElementById('about').style.display = 'flex';
+    }
+
+    // Initialize the page - header and about are shown by default via CSS
+    document.addEventListener('DOMContentLoaded', function() {
+      // Header and About sections are already visible via CSS
+      console.log('Page loaded - Header and About sections visible');
+    });
+  </script>
+</body>
+</html>
