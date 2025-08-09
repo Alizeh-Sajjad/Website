@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -230,9 +231,12 @@
     }
 
     .mood-card img {
+      /* width: 100%; */
+      /* height: 120px; */
       object-fit: cover;
       border-radius: var(--border-radius-small);
       margin-bottom: 20px;
+      background: #f0f0f0;
     }
 
     .mood-card h3 {
@@ -305,6 +309,7 @@
       border-radius: 10px;
       margin-bottom: 15px;
       border: 2px solid #f0f0f0;
+      background: #f0f0f0;
     }
 
     .book-card h4 {
@@ -330,82 +335,155 @@
     }
 
     /* === CONTACT SECTION === */
-    .contact-section {
-      display: none;
-    }
+     .contact-section {
+      /* display: none;  */
+      
+    
 
     .contact-section.active {
-      display: flex;
-    }
-
-    .contact-section .left {
-      flex: 1;
-      padding-right: 40px;
+      display: block;
     }
 
     .contact-section h2 {
       font-size: 28px;
       color: var(--text-color);
       margin-bottom: 20px;
+      text-align: center;
     }
 
-    .contact-section p {
+    .contact-intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .contact-intro p {
       font-size: 16px;
       color: var(--text-secondary);
-      margin-bottom: 30px;
-    }
-
-    .contact-info h3 {
-      font-size: 18px;
-      color: var(--text-color);
-      margin-bottom: 15px;
-    }
-
-    .office-info {
       margin-bottom: 20px;
     }
 
-    .office-info h4 {
-      font-size: 14px;
+    /* FIXED FORM STYLING */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      padding: 30px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px var(--shadow);
+    }
+
+    .contact-form h3 {
+      font-size: 24px;
+      color: var(--text-color);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .contact-form .form-subtitle {
+      color: var(--text-light);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #007BFF;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+
+    .contact-form button {
+      padding: 15px;
+      background-color: #007BFF;
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .contact-form button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* Contact Info Grid */
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .contact-info-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px var(--shadow);
+      text-align: center;
+    }
+
+    .contact-info-card h4 {
+      font-size: 18px;
       color: var(--text-color);
       font-weight: bold;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .contact-info-card p {
+      font-size: 14px;
+      color: var(--text-light);
       margin-bottom: 5px;
     }
 
-    .office-info p {
-      font-size: 14px;
-      color: var(--text-light);
-      margin-bottom: 2px;
-    }
-
     .social-media {
-      margin-top: 30px;
+      text-align: center;
     }
 
     .social-media h4 {
-      font-size: 14px;
+      font-size: 18px;
       color: var(--text-color);
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
     }
 
     .social-media a {
       color: var(--text-light);
       text-decoration: none;
-      margin-right: 15px;
-      font-size: 14px;
+      margin: 0 15px;
+      font-size: 16px;
+      padding: 10px 20px;
+      background: var(--white);
+      border-radius: 25px;
+      box-shadow: 0 2px 10px var(--shadow);
+      transition: var(--transition);
+      display: inline-block;
     }
 
-    .contact-section .right {
-      flex: 1;
-    }
-
-    .contact-section .right img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: var(--border-radius);
-      margin-bottom:384px;
-      margin-left: 244px;
+    .social-media a:hover {
+      background: #007BFF;
+      color: var(--white);
+      transform: translateY(-2px);
     }
 
     /* === RESPONSIVE DESIGN === */
@@ -414,22 +492,20 @@
         padding: 30px 20px;
       }
 
-      .header, 
-      .about-section, 
-      .contact-section {
+      .header,
+      .about-section {
         flex-direction: column;
         text-align: center;
       }
 
       .header .image img,
-      .about-section .right img,
-      .contact-section .right img {
+      .about-section .right img {
         width: 100%;
         margin-left: 0;
+        margin-top: 20px;
       }
 
-      .about-section .left,
-      .contact-section .left {
+      .about-section .left {
         padding: 0;
         margin-bottom: 30px;
       }
@@ -453,13 +529,22 @@
         font-size: 32px;
       }
 
-      .about-section h2,
-      .contact-section h2 {
+      .about-section h2 {
         font-size: 24px;
       }
 
       .mood-section h2 {
         font-size: 28px;
+      }
+
+      .contact-form {
+        margin: 0 20px 40px 20px;
+        padding: 20px;
+      }
+
+      .contact-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
 
@@ -491,9 +576,15 @@
         width: 180px;
         height: 220px;
       }
+
+      .contact-form {
+        margin: 0 10px 40px 10px;
+        padding: 15px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- === HEADER SECTION === -->
@@ -501,7 +592,9 @@
     <div class="text">
       <h1>The <span>Book</span><br><span>Aura</span></h1>
       <div class="buttons">
-        <button class="btn btn-primary" onclick="document.getElementById('mood-selection').style.display='block'; document.getElementById('mood-selection').scrollIntoView({behavior: 'smooth'});">Read Now</button>
+        <button class="btn btn-primary"
+          onclick="document.getElementById('mood-selection').style.display='block'; document.getElementById('mood-selection').scrollIntoView({behavior: 'smooth'});">Read
+          Now</button>
         <button class="btn btn-secondary" onclick="showContact()">Contact Us</button>
       </div>
     </div>
@@ -515,8 +608,8 @@
     <div class="left">
       <h2>About Us</h2>
       <p>
-        Welcome to The Book Aura - your personal reading companion that matches books to your current mood. 
-        Whether you're feeling happy, sad, or angry, we help you discover the perfect book to enhance or transform 
+        Welcome to The Book Aura - your personal reading companion that matches books to your current mood.
+        Whether you're feeling happy, sad, or angry, we help you discover the perfect book to enhance or transform
         your emotional state. Our curated collection ensures every reading experience resonates with your feelings.
       </p>
     </div>
@@ -557,19 +650,22 @@
         <img src="H-1.jpg" alt="The House in the Cerulean Sea" />
         <h4 class="uppercase">THE HOUSE IN THE CERULEAN SEA</h4>
         <p>Found family fantasy warmth</p>
-        <a href="https://www.bing.com/ck/a?!&&p=d424e075abb06d1b30ef5af3574de83b322514fd76f3c691379d92b3c5bc6d18JmltdHM9MTc1NDYxMTIwMA&ptn=3&ver=2&hsh=4&fclid=2a283fd0-2ef7-6910-0de6-2aa32f2c6849&psq=the+house+in+the+cerulean+sea+full+book&u=a1aHR0cHM6Ly93d3cuZ29vZHJlYWRzLmNvbS9ib29rL3Nob3cvNDUwNDczODQtdGhlLWhvdXNlLWluLXRoZS1jZXJ1bGVhbi1zZWE&ntb=1" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://www.bing.com/ck/a?!&&p=d424e075abb06d1b30ef5af3574de83b322514fd76f3c691379d92b3c5bc6d18JmltdHM9MTc1NDYxMTIwMA&ptn=3&ver=2&hsh=4&fclid=2a283fd0-2ef7-6910-0de6-2aa32f2c6849&psq=the+house+in+the+cerulean+sea+full+book&u=a1aHR0cHM6Ly93d3cuZ29vZHJlYWRzLmNvbS9ib29rL3Nob3cvNDUwNDczODQtdGhlLWhvdXNlLWluLXRoZS1jZXJ1bGVhbi1zZWE&ntb=1"
+          target="_blank" class="btn btn-blue">Read Now</a>
       </article>
       <article class="book-card card text-center">
         <img src="H-2.webp" alt="Anxious People" />
         <h4 class="uppercase">ANXIOUS PEOPLE</h4>
         <p>Humorous heartwarming flawed people</p>
-        <a href="https://openlibrary.org/works/OL20656755W/Anxious_People" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://openlibrary.org/works/OL20656755W/Anxious_People" target="_blank" class="btn btn-blue">Read
+          Now</a>
       </article>
       <article class="book-card card text-center">
         <img src="H-3.jpeg" alt="The Hitchhiker's Guide to the Galaxy" />
         <h4 class="uppercase">THE HITCHHIKER'S GUIDE</h4>
         <p>Hilarious absurd cosmic journey</p>
-        <a href="https://openlibrary.org/works/OL2163721W/The_Hitchhiker's_Guide_to_the_Galaxy" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://openlibrary.org/works/OL2163721W/The_Hitchhiker's_Guide_to_the_Galaxy" target="_blank"
+          class="btn btn-blue">Read Now</a>
       </article>
     </div>
     <button class="btn btn-secondary back-btn" onclick="showMoodSection()">Go Back</button>
@@ -584,19 +680,22 @@
         <img src="S-1.webp" alt="A Little Life" />
         <h4 class="uppercase">A LITTLE LIFE</h4>
         <p>Deeply moving heartbreaking friendship tale</p>
-        <a href="https://openlibrary.org/works/OL17207995W/A_Little_Life" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://openlibrary.org/works/OL17207995W/A_Little_Life" target="_blank" class="btn btn-blue">Read
+          Now</a>
       </article>
       <article class="book-card card text-center">
         <img src="S-2.jpeg" alt="The Book Thief" />
         <h4 class="uppercase">THE BOOK THIEF</h4>
         <p>Poignant World War II story</p>
-        <a href="https://openlibrary.org/works/OL5735363W/The_Book_Thief" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://openlibrary.org/works/OL5735363W/The_Book_Thief" target="_blank" class="btn btn-blue">Read
+          Now</a>
       </article>
       <article class="book-card card text-center">
         <img src="S-3.webp" alt="The Kite Runner" />
         <h4 class="uppercase">THE KITE RUNNER</h4>
         <p>Friendship betrayal and redemption story</p>
-        <a href="https://openlibrary.org/works/OL45804W/The_Kite_Runner" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://openlibrary.org/works/OL45804W/The_Kite_Runner" target="_blank" class="btn btn-blue">Read
+          Now</a>
       </article>
     </div>
     <button class="btn btn-secondary back-btn" onclick="showMoodSection()">Go Back</button>
@@ -611,7 +710,8 @@
         <img src="A-1.webp" alt="Rage Becomes Her" />
         <h4 class="uppercase">RAGE BECOMES HER</h4>
         <p>Revolutionary power of women's anger</p>
-        <a href="https://openlibrary.org/works/OL20152445W/Rage_Becomes_Her" target="_blank" class="btn btn-blue">Read Now</a>
+        <a href="https://openlibrary.org/works/OL20152445W/Rage_Becomes_Her" target="_blank" class="btn btn-blue">Read
+          Now</a>
       </article>
       <article class="book-card card text-center">
         <img src="A-2.jpg" alt="Anger: Wisdom for Cooling the Flames" />
@@ -631,45 +731,58 @@
 
   <!-- === CONTACT US SECTION === -->
   <section class="contact-section container" id="contact">
-    <div class="left">
+    <div class="contact-intro">
       <h2>Contact Us</h2>
       <p>
-        We'd love to hear from you! Get in touch with us for any questions about books, 
+        We'd love to hear from you! Get in touch with us for any questions about books,
         recommendations, or just to share your reading experience.
       </p>
-      <p>Visit us at our store!</p>
-      
-      <div class="contact-info">
-        <h3 class="uppercase">OUR LOCATIONS</h3>
-        
-        <div class="office-info">
-          <h4 class="uppercase">MAIN OFFICE</h4>
-          <p>123 Book Street,</p>
-          <p>Any City, State</p>
-          <p>Any Country</p>
-          <p>(123) 456-7890</p>
-        </div>
-        
-        <div class="office-info">
-          <h4 class="uppercase">BRANCH OFFICE</h4>
-          <p>456 Reading Ave,</p>
-          <p>Any City, State</p>
-          <p>Any Country</p>
-          <p>(123) 456-7891</p>
-        </div>
+    </div>
+
+    <!-- FIXED CONTACT FORM -->
+    <div class="contact-form">
+      <h3>We'd love to hear from you</h3>
+      <p class="form-subtitle">Feel free to reach out—just fill out the form below.</p>
+      <form action="https://formspree.io/f/xkgzkogk" method="POST">
+        <input type="text" name="name" placeholder="Enter Your Name" required>
+        <input type="email" name="_replyto" placeholder="Enter Your E-mail Address" required>
+        <textarea name="message" placeholder="Your message…" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- CONTACT INFO GRID -->
+    <div class="contact-info-grid">
+      <div class="contact-info-card">
+        <h4>Main Office</h4>
+        <p>123 Book Street</p>
+        <p>Any City, State</p>
+        <p>Any Country</p>
+        <p><strong>(123) 456-7890</strong></p>
       </div>
-      
-      <p style="margin-top: 20px; font-weight: bold;">hello@thebookaura.com</p>
-      
-      <div class="social-media">
-        <h4 class="uppercase">SOCIAL MEDIA</h4>
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
+
+      <div class="contact-info-card">
+        <h4>Branch Office</h4>
+        <p>456 Reading Ave</p>
+        <p>Any City, State</p>
+        <p>Any Country</p>
+        <p><strong>(123) 456-7891</strong></p>
+      </div>
+
+      <div class="contact-info-card">
+        <h4>Email Us</h4>
+        <p><strong>hello@thebookaura.com</strong></p>
+        <p>support@thebookaura.com</p>
+        <p>We respond within 24 hours</p>
       </div>
     </div>
-    <div class="right flex-center">
-      <img src="contact.webp" alt="Contact Image" class="img-responsive" />
+
+    <!-- SOCIAL MEDIA -->
+    <div class="social-media">
+      <h4>Follow Us</h4>
+      <a href="#" onclick="alert('Facebook page coming soon!')">Facebook</a>
+      <a href="#" onclick="alert('Instagram page coming soon!')">Instagram</a>
+      <a href="#" onclick="alert('Twitter page coming soon!')">Twitter</a>
     </div>
   </section>
 
@@ -678,10 +791,13 @@
       // Hide all sections
       document.querySelectorAll('section').forEach(section => {
         section.style.display = 'none';
+        section.classList.remove('active');
       });
       document.getElementById('home').style.display = 'none';
+      
       // Show mood selection
       document.getElementById('mood-selection').style.display = 'block';
+      document.getElementById('mood-selection').scrollIntoView({behavior: 'smooth'});
     }
 
     function showBookSection(mood) {
@@ -691,13 +807,14 @@
         section.classList.remove('active');
       });
       document.getElementById('home').style.display = 'none';
-      
+
       // Show the corresponding book section
       const sectionId = mood + '-books';
       const section = document.getElementById(sectionId);
       if (section) {
         section.style.display = 'block';
         section.classList.add('active');
+        section.scrollIntoView({behavior: 'smooth'});
       }
     }
 
@@ -708,9 +825,11 @@
         section.classList.remove('active');
       });
       document.getElementById('home').style.display = 'none';
+      
       // Show contact section
-      document.getElementById('contact').style.display = 'flex';
+      document.getElementById('contact').style.display = 'block';
       document.getElementById('contact').classList.add('active');
+      document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
     }
 
     function goHome() {
@@ -719,16 +838,75 @@
         section.style.display = 'none';
         section.classList.remove('active');
       });
+      
       // Show home sections
       document.getElementById('home').style.display = 'flex';
       document.getElementById('about').style.display = 'flex';
+      document.getElementById('home').scrollIntoView({behavior: 'smooth'});
     }
 
-    // Initialize the page - header and about are shown by default via CSS
+    // Add navigation functionality to the "READ NOW" button in mood section
     document.addEventListener('DOMContentLoaded', function() {
-      // Header and About sections are already visible via CSS
-      console.log('Page loaded - Header and About sections visible');
+      const readNowBtn = document.querySelector('.read-now-btn');
+      if (readNowBtn) {
+        readNowBtn.addEventListener('click', function() {
+          // You can customize this behavior - for now it just scrolls to top of mood section
+          document.getElementById('mood-selection').scrollIntoView({behavior: 'smooth'});
+        });
+      }
+
+      // Add form submission handler
+      const contactForm = document.querySelector('.contact-form form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form data
+          const formData = new FormData(this);
+          const name = formData.get('name');
+          const email = formData.get('email');
+          const message = formData.get('message');
+          
+          // Simple validation
+          if (name && email && message) {
+            alert(`Thank you ${name}! Your message has been received. We'll get back to you at ${email} soon!`);
+            this.reset(); // Clear the form
+          } else {
+            alert('Please fill in all required fields.');
+          }
+        });
+      }
+
+      // Add a "Go Home" button to each section for better navigation
+      const sections = ['mood-selection', 'happy-books', 'sad-books', 'angry-books', 'contact'];
+      sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section && sectionId !== 'mood-selection') {
+          // Add home button to sections (except mood selection)
+          const homeBtn = document.createElement('button');
+          homeBtn.className = 'btn btn-primary';
+          homeBtn.textContent = 'Back to Home';
+          homeBtn.onclick = goHome;
+          homeBtn.style.marginLeft = '10px';
+          
+          // Find existing back button and add home button next to it
+          const backBtn = section.querySelector('.back-btn');
+          if (backBtn) {
+            backBtn.parentNode.insertBefore(homeBtn, backBtn.nextSibling);
+          } else {
+            // For contact section, add at the end
+            const lastChild = section.lastElementChild;
+            if (lastChild) {
+              const btnContainer = document.createElement('div');
+              btnContainer.style.textAlign = 'center';
+              btnContainer.style.marginTop = '40px';
+              btnContainer.appendChild(homeBtn);
+              section.appendChild(btnContainer);
+            }
+          }
+        }
+      });
+
+      console.log('Page loaded - Header and About sections visible, form functionality added');
     });
   </script>
-</body>
-</html>
